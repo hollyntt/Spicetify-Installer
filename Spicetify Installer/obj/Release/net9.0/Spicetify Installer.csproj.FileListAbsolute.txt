@@ -1,0 +1,14 @@
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\bin\Release\net9.0\Spicetify Installer.exe
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\bin\Release\net9.0\Spicetify Installer.deps.json
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\bin\Release\net9.0\Spicetify Installer.runtimeconfig.json
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\bin\Release\net9.0\Spicetify Installer.dll
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\bin\Release\net9.0\Spicetify Installer.pdb
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\Spicetify Installer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\Spicetify Installer.AssemblyInfoInputs.cache
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\Spicetify Installer.AssemblyInfo.cs
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\Spicetify Installer.csproj.CoreCompileInputs.cache
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\Spicetify Installer.dll
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\refint\Spicetify Installer.dll
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\Spicetify Installer.pdb
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\Spicetify Installer.genruntimeconfig.cache
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\ref\Spicetify Installer.dll

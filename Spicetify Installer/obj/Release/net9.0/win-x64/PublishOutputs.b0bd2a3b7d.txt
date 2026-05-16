@@ -1,0 +1,2 @@
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\bin\Release\net9.0\publish\Spicetify Installer.pdb
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\bin\Release\net9.0\publish\Spicetify Installer.exe
