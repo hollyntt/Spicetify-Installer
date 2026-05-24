@@ -7,6 +7,7 @@ internal static class Program
 {
     private static bool _testMode = false;
     private static int _waitSeconds = 2;
+    private static readonly int CommandTimeoutSeconds = 45; // Increased timeout
 
     static void Main()
     {
@@ -14,22 +15,22 @@ internal static class Program
 
         try
         {
-            Console.WriteLine("trying upgrade first...");
+            Console.WriteLine("Trying upgrade first...");
             if (RunCommand("spicetify", "upgrade"))
             {
                 if (RunCommand("spicetify", "apply"))
                 {
-                    Console.WriteLine("\nall good!");
+                    Console.WriteLine("\n✅ All good!");
                     return;
                 }
             }
 
-            Console.WriteLine("\nupgrade failed or not installed, doing full thing...");
+            Console.WriteLine("\nUpgrade failed or not installed, doing full install...");
             FullInstall();
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"error: {ex.Message}");
+            Console.WriteLine($"❌ Error: {ex.Message}");
         }
     }
 
@@ -59,6 +60,7 @@ internal static class Program
                 Arguments = arguments,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
+                RedirectStandardInput = true,     // Important: Allow sending input
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
@@ -67,10 +69,24 @@ internal static class Program
             process.StartInfo = startInfo;
             process.Start();
 
+            // Send empty input in case spicetify asks for confirmation
+            try
+            {
+                process.StandardInput.WriteLine();
+                process.StandardInput.Close();
+            }
+            catch { /* Ignore if input redirection fails */ }
+
             string output = process.StandardOutput.ReadToEnd();
             string error = process.StandardError.ReadToEnd();
 
-            process.WaitForExit();
+            // Wait with timeout
+            if (!process.WaitForExit(CommandTimeoutSeconds * 1000))
+            {
+                Console.WriteLine($"⚠️ Command timed out after {CommandTimeoutSeconds} seconds - killing process");
+                try { process.Kill(true); } catch { }
+                return false;
+            }
 
             if (!string.IsNullOrWhiteSpace(output))
                 Console.WriteLine(output.Trim());
@@ -80,43 +96,44 @@ internal static class Program
 
             if (process.ExitCode != 0)
             {
-                Console.WriteLine("failed :(");
+                Console.WriteLine("❌ failed :(");
                 return false;
             }
 
+            Console.WriteLine("✅ Success");
             return true;
         }
-        catch
+        catch (Exception ex)
         {
-            Console.WriteLine("something broke");
+            Console.WriteLine($"❌ Something broke: {ex.Message}");
             return false;
         }
     }
 
     static void FullInstall()
     {
-        Console.WriteLine("\n=== doing full install ===");
+        Console.WriteLine("\n=== Doing full install ===");
 
         if (_waitSeconds > 0)
             Thread.Sleep(_waitSeconds * 1000);
 
         if (IsWindows())
         {
-            Console.WriteLine("windows detected");
+            Console.WriteLine("Windows detected");
             string psCommand = "iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex";
             RunPowerShell(psCommand);
         }
         else
         {
-            Console.WriteLine("linux/mac detected");
+            Console.WriteLine("Linux/Mac detected");
             string cmd = "curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh";
             RunCommand("sh", $"-c \"{cmd}\"", "Spicetify Installer");
         }
 
-        Console.WriteLine("applying...");
+        Console.WriteLine("Applying themes and extensions...");
         RunCommand("spicetify", "apply");
 
-        Console.WriteLine("\ndone. go open spotify and grab marketplace");
+        Console.WriteLine("\n🎉 Done! Open Spotify and install the Marketplace.");
     }
 
     static void RunPowerShell(string command)
@@ -142,12 +159,20 @@ internal static class Program
 
             process.WaitForExit();
 
-            if (!string.IsNullOrWhiteSpace(output)) Console.WriteLine(output.Trim());
-            if (!string.IsNullOrWhiteSpace(error)) Console.WriteLine(error.Trim());
+            if (!string.IsNullOrWhiteSpace(output))
+                Console.WriteLine(output.Trim());
+
+            if (!string.IsNullOrWhiteSpace(error))
+                Console.WriteLine(error.Trim());
+
+            if (process.ExitCode == 0)
+                Console.WriteLine("✅ PowerShell installer completed");
+            else
+                Console.WriteLine("❌ PowerShell installer failed");
         }
-        catch
+        catch (Exception ex)
         {
-            Console.WriteLine("powershell installer failed");
+            Console.WriteLine($"❌ PowerShell installer failed: {ex.Message}");
         }
     }
 }
