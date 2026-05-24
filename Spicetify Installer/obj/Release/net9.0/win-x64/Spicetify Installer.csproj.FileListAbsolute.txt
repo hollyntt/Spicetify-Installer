@@ -197,3 +197,4 @@ D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Install
 D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\win-x64\Spicetify Installer.pdb
 D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\win-x64\Spicetify Installer.genruntimeconfig.cache
 D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\win-x64\ref\Spicetify Installer.dll
+D:\Documents\CODE\Ours\Spicetify Installer\Spicetify Installer\Spicetify Installer\obj\Release\net9.0\win-x64\Spicetify Installer.sourcelink.json

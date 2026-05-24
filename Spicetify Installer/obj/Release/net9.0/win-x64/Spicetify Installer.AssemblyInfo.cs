@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Spicetify Installer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5225f1cb5d60dc58dea69e6ae70ba4917fee9d29")]
 [assembly: System.Reflection.AssemblyProductAttribute("Spicetify Installer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Spicetify Installer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
