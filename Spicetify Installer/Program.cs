@@ -60,7 +60,7 @@ internal static class Program
                 Arguments = arguments,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
-                RedirectStandardInput = true,     // Important: Allow sending input
+                RedirectStandardInput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
@@ -69,18 +69,16 @@ internal static class Program
             process.StartInfo = startInfo;
             process.Start();
 
-            // Send empty input in case spicetify asks for confirmation
             try
             {
                 process.StandardInput.WriteLine();
                 process.StandardInput.Close();
             }
-            catch { /* Ignore if input redirection fails */ }
+            catch { }
 
             string output = process.StandardOutput.ReadToEnd();
             string error = process.StandardError.ReadToEnd();
 
-            // Wait with timeout
             if (!process.WaitForExit(CommandTimeoutSeconds * 1000))
             {
                 Console.WriteLine($"⚠️ Command timed out after {CommandTimeoutSeconds} seconds - killing process");
